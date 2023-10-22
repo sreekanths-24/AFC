@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Submit Feedback</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="text">Feedback:</label>
+        <textarea name="text" id="text" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

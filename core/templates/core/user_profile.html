@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user.username }}!</h2>
+    
+    <!-- Feedback Links with Feedbacks -->
+    <div class="row">
+        {% for feedback_data in feedbacks_data %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Form Link: <a href="{% url 'submit_feedback' feedback_data.link.link %}" id="feedback-link-{{ feedback_data.link.link }}">
+                            https://127.0.0.1:8000/submit_feedback/{{ feedback_data.link.link }}
+                        </a>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion accordion-flush" id="accordionFlushExample-{{ feedback_data.link.link }}">
+                            <div class="accordion-item">
+                              <h5 class="accordion-header h5">
+                                <ul class="list-group">
+                                        <li class="list-group-item"><p><strong>Name:</strong> {{ feedback_data.link.name }}</p></li>
+                                        <li class="list-group-item"><p><strong>Description:</strong> {{ feedback_data.link.description }}</p></li>
+                                </ul>
+                                  
+                                                                  
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree-{{ feedback_data.link.link }}" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    <!-- Add the name and description below the header -->
+                                    <h5 class="card-title"> View Feedbacks:</h5>
+                                </button>
+                              </h5>
+                              <div id="flush-collapseThree-{{ feedback_data.link.link }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample-{{ feedback_data.link.link }}">
+                                <div class="accordion-body">
+
+                                    <ul class="list-group">
+                                        {% for feedback in feedback_data.feedbacks %}
+                                            <li class="list-group-item">{{ feedback.text }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-sm" data-clipboard-target="#feedback-link-{{ feedback_data.link.link }}">
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn');
+    
+    clipboard.on('success', function(e) {
+        console.log('Text: ', 'http://127.0.0.1:8000/submit_feedback/'+ e.text);
+    });
+    
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+</script>
+
+{% endblock %}
