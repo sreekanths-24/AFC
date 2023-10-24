@@ -1,34 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 
 {% block content %}
-<section class="vh-100">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-  <form method="post" >
+<div  style="background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMGFic3RyYWN0fGVufDB8fDB8fHww); background-repeat: no-repeat; background-size: cover; width: 100%; height: 100vh;" class="d-flex align-items-center justify-content-center">
+  <form method="post" class="m-1 p-5 text-center" style="min-width: 100px; width: 100%; max-width: 600px; background-color: #272d2d; border-radius: 15px;">
     {% csrf_token %}
 
-      <h3 class="mb-5">Sign in</h3>
+      <h3 class="mb-5" style="color: #edf5fc; font-weight: bold;">SIGNIN</h3>
       
       <div class="form-outline mb-4">
-          <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="username" id="username"  required placeholder="Username"/>
+          <input type="text" id="typeEmailX-2" class="form-control form-control-lg" name="username" id="username"  required placeholder="Username" style="font-weight: bold;"/>
         </div>
         
         <div class="form-outline mb-4">
-            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" id="password"  required placeholder="Password"/>
+            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" id="password"  required placeholder="Password" style="font-weight: bold;"/>
         </div>
         
         
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+        <button type="submit" class="btn py-2" style="background-color: #23ce6b; border-radius: 10px; min-width: 100px; font-weight: bold;">Login</button>
+        <p class="mt-4" style="color: #edf5fc;">
+          <a href="#" style="color: #23ce6b; text-decoration: none;"> Forgot password?</a><br>
+          Don’t have an account? <a href="{% url 'register' %}" style="color: #23ce6b; text-decoration: none;">signup</a>
+
+        </p>
     </form>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
+</div>
 {% endblock %}
