@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="min-height: 90vh; max-width: 700px; margin: 0 auto;">
+    
+    <h2 class="text-light">Feedbacks</h2>
+    <div class="card mb-4" style="background-color: #272d2d; color: #edf5fc;">
+        <div class="card-header">
+            <p><strong>Name:</strong> {{ feedback_link.name }}</p>
+            <p><strong>Description:</strong> {{ feedback_link.description }}</p>
+        </div>
+        <div class="card-body" style="background-color: #272d2d;">
+            <h5 class="card-title">Feedbacks:</h5>
+            <ul class="list-group">
+                {% for feedback in feedbacks reversed %}
+                    <li class="list-group-item" style="background-color: #272d2d; color: #edf5fc;">{{ feedback.text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

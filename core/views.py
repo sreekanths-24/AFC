@@ -5,7 +5,10 @@ from .models import UserProfile, Feedback, FeedbackLink
 from django.contrib.auth.decorators import login_required
 import uuid
 from django.contrib.auth import logout
+from django.http import JsonResponse
 
+def landing(request):
+    return render(request, 'landing.html')
 # User Registration View
 def register(request):
     if request.method == 'POST':
@@ -32,6 +35,7 @@ def user_login(request):
 def custom_logout(request):
     logout(request)
     return redirect('login')  # Redirect to your login page
+
 # User Profile View (Requires login)
 @login_required
 def user_profile(request):
@@ -45,6 +49,7 @@ def user_profile(request):
         feedbacks_data.append({'link': link, 'feedbacks': feedbacks})
 
     return render(request, 'core/user_profile.html', {'user_profile': user_profile, 'feedbacks_data': feedbacks_data})
+
 @login_required
 def create_feedback_link(request):
     if request.method == 'POST':
@@ -65,7 +70,7 @@ def submit_feedback(request, link):
     try:
         feedback_link = FeedbackLink.objects.get(link=link)
     except FeedbackLink.DoesNotExist:
-        # Handle case where the link doesn't exist
+        # Handle the case where the link doesn't exist
         return render(request, 'core/invalid_link.html')
 
     if request.method == 'POST':
@@ -79,10 +84,18 @@ def submit_feedback(request, link):
 def thank_you(request):
     return render(request, 'core/thank_you.html')
 
-from django.http import JsonResponse
+# View Feedback View
+@login_required
+def view_feedback(request, link):
+    try:
+        feedback_link = FeedbackLink.objects.get(link=link)
+        feedbacks = Feedback.objects.filter(feedbacklink=feedback_link)
+        return render(request, 'core/view_feedback.html', {'feedback_link': feedback_link, 'feedbacks': feedbacks})
+    except FeedbackLink.DoesNotExist:
+        # Handle the case where the link doesn't exist
+        return render(request, 'core/invalid_link.html')
 
-# ... Other views
-
+# Delete Feedback Link View
 @login_required
 def delete_feedback_link(request, link):
     try:

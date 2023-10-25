@@ -3,6 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views  # Import Django's built-in views for authentication
 
 urlpatterns = [
+    path('', views.landing, name='landing'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('profile/', views.user_profile, name='profile'),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('custom_logout/', views.custom_logout, name='custom_logout'),
     path('thank_you/', views.thank_you, name='thank_you'),
     path('delete_feedback_link/<uuid:link>/', views.delete_feedback_link, name='delete_feedback_link'),
+    path('view_feedback/<uuid:link>/', views.view_feedback, name='view_feedback'),  # Add this line
 ]
