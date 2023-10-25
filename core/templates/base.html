@@ -11,33 +11,63 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         *{
             font-family: 'Quicksand', sans-serif;   
             font-weight: bold;
         }
+        .navbar-dark .nav-item .nav-link {
+            color: #edf5fc;
+        }
+
+        .navbar-dark .nav-item .nav-link:hover {
+            background-color: #272d2d;
+            transition: all 0.3s ease;
+            border-radius: 0.25rem;
+            color: #edf5fc;
+        }
+
+        .fa-li {
+            position: relative;
+            left: 0;
+        }
+
+
+        @media screen and (min-width: 500px) {
+            
+        .navbar-nav-2{
+            position: relative;
+            left: 60%;
+        }
+            
+        }
     </style>
 </head>
-<body>
-    <header  class="container">
-        <a class="navbar-brand" href="/"><h2 class="h2">
-
-            Feedback Collector
-        </h2> 
-    </a>
-
-    </header>
-    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasLabel">Menu</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
+<body  style="background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMGFic3RyYWN0fGVufDB8fDB8fHww); background-repeat: no-repeat; background-size: cover;">
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; top: 0; width: 100%; z-index: 1;">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">AFC</a>
+  
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-3">
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#">@{{ user.username }}</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+  
+                <ul class="navbar-nav navbar-nav-2">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
@@ -58,20 +88,14 @@
                         </li>
                     {% endif %}
                 </ul>
-                {% if user.is_authenticated %}
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                {% else %}
-                <p>
-                    
-                </p>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-      <div class="container mt-4">
+               
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+      <div class="container mt-4 pt-5">
         {% block content %}
         {% endblock %}
     </div>
