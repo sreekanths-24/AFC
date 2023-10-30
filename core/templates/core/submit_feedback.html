@@ -1,24 +1,65 @@
-{% extends 'home.html' %}
-
-{% block content %}
-<div style="background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMGFic3RyYWN0fGVufDB8fDB8fHww); background-repeat: no-repeat; background-size: cover; width: 100%; height: 100vh;" class="d-flex align-items-center justify-content-center flex-column">
-    
-                <div class="card mb-3" style="background-color: #272d2d; border: none;">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color: #edf5fc; font-weight: bold;">{{ feedback_link.name }}</h5>
-                        <p class="card-text" style="color: #edf5fc;">{{ feedback_link.description }}</p>
-                    </div>
-                </div>
-        <form method="post" class="m-1 p-5 text-center" style="min-width: 100px; width: 100%; max-width: 600px; background-color: #272d2d; border-radius: 15px;">
-            {% csrf_token %}
-
-            <h3 class="mb-4" style="color: #edf5fc; font-weight: bold;">Submit Feedback</h3>
-
-            <div class="form-outline mb-4">
-                <textarea class="form-control form-control-lg" name="text" id="text" rows="4" required placeholder="Write your Feedback here, you can provide your name if you want, be respectful and honest in your feedback." style="font-weight: bold; background-color: #edf5fc; color: #272d2d;"></textarea>
-            </div>
-
-            <button type="submit" class="btn py-2" style="background-color: #23ce6b; border-radius: 10px; min-width: 100px; font-weight: bold;">Submit</button>
-        </form>
+{% extends 'home.html' %} {% block content %}
+<div
+  style="
+    background-image: url(https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMGFic3RyYWN0fGVufDB8fDB8fHww);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+  "
+  class="d-flex align-items-center justify-content-center flex-column"
+>
+  <div class="card mb-3" style="background-color: #272d2d; border: none">
+    <div class="card-body">
+      <h5 class="card-title" style="color: #edf5fc; font-weight: bold">
+        {{ feedback_link.name }}
+      </h5>
+      <p class="card-text" style="color: #edf5fc">
+        {{ feedback_link.description }}
+      </p>
     </div>
+  </div>
+  <form
+    method="post"
+    class="m-1 p-5 text-center"
+    style="
+      min-width: 100px;
+      width: 100%;
+      max-width: 600px;
+      background-color: #272d2d;
+      border-radius: 15px;
+    "
+  >
+    {% csrf_token %}
+
+    <h3 class="mb-4" style="color: #edf5fc; font-weight: bold">
+      Submit Feedback
+    </h3>
+
+    <div class="form-outline mb-4">
+      <textarea
+        class="form-control form-control-lg"
+        name="text"
+        id="text"
+        rows="4"
+        required
+        placeholder="Write your Feedback here, you can provide your name if you want, be respectful and honest in your feedback."
+        style="font-weight: bold; background-color: #edf5fc; color: #272d2d"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn py-2"
+      style="
+        background-color: #23ce6b;
+        border-radius: 10px;
+        min-width: 100px;
+        font-weight: bold;
+      "
+    >
+      Submit
+    </button>
+  </form>
+</div>
 {% endblock %}
